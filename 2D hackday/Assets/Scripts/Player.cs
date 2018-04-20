@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+	public float maxSpeed = 3;
 	public float speed = 50;
 	public float jumpPower = 150;
 
@@ -27,5 +28,16 @@ public class Player : MonoBehaviour {
 		float h = Input.GetAxis("Horizontal");
 
 		rb2d.AddForce((Vector2.right * speed) * h);
+
+
+		if (rb2d.velocity.x > maxSpeed) 
+		{
+			rb2d.velocity = new Vector2 (maxSpeed, rb2d.velocity.y);
+		}
+
+		if (rb2d.velocity.x < -maxSpeed) 
+		{
+			rb2d.velocity = new Vector2 (maxSpeed, rb2d.velocity.y);
+		}
 	}
 }
